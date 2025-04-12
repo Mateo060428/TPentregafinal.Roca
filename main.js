@@ -1,64 +1,45 @@
-function IngresarUsuario() {
-    let= nombreUsuario=prompt("Ingrese su usuario");
 
- if (nombreUsuario=="") {
-    alert("error:usuario no encontrado");
- } else {
-    alert("Bienvenido a la sucursal Chevrolet " + nombreUsuario);
- }   
+    
+ const inputusuario = document.querySelector("#inputusuario") 
+ const inputpassword = document.querySelector("#inputpassword")
+ const boton2 = document.getElementById("Guardar")
 
-}
+ function guardarusuario(){
 
-const Auto = function (nombre,precio,año,cantidad){
-    this.nombre = nombre,
-    this.precio = precio,
-    this.año = año,
-    this.cantidad = cantidad
-}
- let auto1= new Auto("corsa",120000,2008,5)
- let auto2= new Auto("montana",240000,2024,20)
- let auto3= new Auto("onix",600000,2023,8)
- let auto4= new Auto("tracker",360000,2024,12)
- const lista = [auto1,auto2,auto3,auto4]
- function BuscarAuto(){
-    let palabraClave = prompt("ingresa el nombre del auto q estas buscando").trim().toUpperCase()
-    let resultado = lista.filter( (x)=> x.nombre.toUpperCase().includes(palabraClave))
-    if (resultado.length >0) {
-        console.table(resultado)
-        ComprarAuto(resultado); 
-    } else {
-       alert("no se encontro el auto que buscas") 
+    const datosdellogin ={
+        usuario: inputusuario.value,
+        password : inputpassword.value
     }
+    let convertir2 =JSON.stringify(datosdellogin)
+localStorage.setItem("usuario",convertir2)
+console.log (convertir2)
+console.log (datosdellogin)
  }
- function ComprarAuto(resultado){
-    let eleccion = prompt("¿desea comprar el auto elegido? si/no").toLowerCase();
+ boton2.addEventListener("click",guardarusuario)
+ boton2.addEventListener("click",mostrarMensajeConfirmacion)
+const Autos = [
+    { nombre:"Corsa",año:2008,valor:120000,cantidad:5,docecuotas:10000,seiscuotas:20000,trescuotas:40000},
+    { nombre: "Montana",año:2024,valor:240000,cantidad:20,docecuotas:20000,seiscuotas:40000,trescuotas:80000 },
+    { nombre: "Onix",año:2023,valor:600000,cantidad:8,docecuotas:50000,seiscuotas:10000,trescuotas:200000 },
+    { nombre: "Tracker",año:2024,valor:360000,cantidad:12,docecuotas:30000,seiscuotas:60000,trescuotas:120000 }
+];
 
-if (eleccion==="si") {
+function mostrarlistadeautos() {
+    const itemsdelalista = document.getElementById('itemsdelalista');
 
-    let nombredelAuto = prompt("ingrese el nombre del auto").trim();
-    let AutoElegido = resultado.find(auto => auto.nombre.toLowerCase() === nombredelAuto.toLowerCase());
+    Autos.forEach(Autos => {
+        const datosdelalista = document.createElement('li');
+        datosdelalista.textContent = `${Autos.nombre} (${Autos.año}) - Cantidad: ${Autos.cantidad} - Valor: $${Autos.valor} - 12cuotas: $${Autos.docecuotas} - 6cuotas: $${Autos.seiscuotas} - 3cuotas $${Autos.trescuotas}`
+        itemsdelalista.appendChild(datosdelalista);
+    });
 
-    if (AutoElegido){
-        let cuotas = 12;
-        let cuotaMensual = AutoElegido.precio / cuotas; 
-        alert(`El precio del auto ${ AutoElegido.nombre } es ${ AutoElegido.precio } Cada cuota será de ${ cuotaMensual } durante ${ cuotas } meses.`);
-
-    }
-} else {
-    alert("Selección no válida.");
+    const listadeautos = document.getElementById('listadeautos');
+    listadeautos.style.display = 'block';
 }
-if (eleccion==="no") {
-    alert("recibido gracias por entrar a nuestra pagina")
-}
- }
- IngresarUsuario()
- BuscarAuto()
-let pregunta = prompt ("¿Esta seguro de su compra?")
 
- const respuesta = (pregunta === "si") ? true : false
+const mostrarlistaButton = document.getElementById('mostarlistaButton');
+mostrarlistaButton.addEventListener('click',mostrarlistadeautos);
 
- respuesta ? alert("Recibido,por favor complete el formulario a continuacion") : alert("Recibido,gracias por entrar a nuestra pagina")
-  
 const  inputNombre = document.querySelector("#inputname")
 const  inputApellido = document.querySelector("#inputapellido")
 const  inputMetododepago = document.querySelector("#inputmetododepago")
@@ -82,4 +63,9 @@ localStorage.setItem("datos",convertir)
 console.log (convertir)
 console.log (datosdelformulario)
 }
+
+function mostrarMensajeConfirmacion() {
+    swal("¡Recibido!", "Gracias por enviar el formulario.", "success");
+}
 boton.addEventListener("click",guardarDatos)
+boton.addEventListener("click",mostrarMensajeConfirmacion)
