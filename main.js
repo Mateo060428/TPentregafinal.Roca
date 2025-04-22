@@ -18,10 +18,10 @@ console.log (datosdellogin)
  boton2.addEventListener("click",guardarusuario)
  boton2.addEventListener("click",mostrarMensajeConfirmacion)
 const Autos = [
-    { nombre:"Corsa",año:2008,valor:120000,cantidad:5,docecuotas:10000,seiscuotas:20000,trescuotas:40000},
-    { nombre: "Montana",año:2024,valor:240000,cantidad:20,docecuotas:20000,seiscuotas:40000,trescuotas:80000 },
-    { nombre: "Onix",año:2023,valor:600000,cantidad:8,docecuotas:50000,seiscuotas:10000,trescuotas:200000 },
-    { nombre: "Tracker",año:2024,valor:360000,cantidad:12,docecuotas:30000,seiscuotas:60000,trescuotas:120000 }
+    { imagen:"https://cuyomotor.com.ar/wp-content/uploads/2025/01/chevrolet-corsa-1473562.jpg " ,nombre:"Corsa",año:2008,valor:120000,cantidad:5,docecuotas:10000,seiscuotas:20000,trescuotas:40000},
+    { imagen:"https://http2.mlstatic.com/D_NQ_NP_958344-MLA80072527648_102024-B.webp",nombre: "Montana",año:2024,valor:240000,cantidad:20,docecuotas:20000,seiscuotas:40000,trescuotas:80000 },
+    { imagen:"https://www.chevrolet.com.ar/content/dam/chevrolet/sa/argentina/espanol/index/cars/2020-onix-premier/colorizer/02-images/red-e-or-not-red-met5.jpg?imwidth=960",nombre: "Onix",año:2023,valor:600000,cantidad:8,docecuotas:50000,seiscuotas:10000,trescuotas:200000 },
+    {imagen:"https://www.chevroletforestcar.com.ar/content/dam/chevrolet/sa/ar/es/master/home/crossovers-and-suvs/tracker/plan-ahorro/oferta-tracker-turbo-tracker-rs-mob.jpg?imwidth=1920", nombre: "Tracker",año:2024,valor:360000,cantidad:12,docecuotas:30000,seiscuotas:60000,trescuotas:120000 }
 ];
 
 function mostrarlistadeautos() {
@@ -29,7 +29,12 @@ function mostrarlistadeautos() {
 
     Autos.forEach(Autos => {
         const datosdelalista = document.createElement('li');
-        datosdelalista.textContent = `${Autos.nombre} (${Autos.año}) - Cantidad: ${Autos.cantidad} - Valor: $${Autos.valor} - 12cuotas: $${Autos.docecuotas} - 6cuotas: $${Autos.seiscuotas} - 3cuotas $${Autos.trescuotas}`
+        datosdelalista.innerHTML = `
+            <img src="${Autos.imagen}" alt="${Autos.nombre}" class="card"> 
+
+            ${Autos.nombre} (${Autos.año}) - Cantidad: ${Autos.cantidad} - Valor: $${Autos.valor} - 
+            12 cuotas: $${Autos.docecuotas} - 6 cuotas: $${Autos.seiscuotas} - 3 cuotas: $${Autos.trescuotas}
+        `;
         itemsdelalista.appendChild(datosdelalista);
     });
 
@@ -69,3 +74,43 @@ function mostrarMensajeConfirmacion() {
 }
 boton.addEventListener("click",guardarDatos)
 boton.addEventListener("click",mostrarMensajeConfirmacion)
+
+const obtenerVehiculos = async () => {
+    const url = 'vehiculos.json';
+
+    try {
+        const respuesta = await fetch(url);
+        if (!respuesta.ok) {
+            throw new Error('Error en la respuesta del archivo JSON'); 
+        }
+        const datos = await respuesta.json(); 
+        mostrarVehiculos(datos); 
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud Fetch:', error);
+        document.getElementById('resultado').textContent = 'Error al cargar los datos';
+    }
+};
+
+
+const mostrarVehiculos = (datos) => {
+    const resultado = document.getElementById('resultado');
+    resultado.innerHTML = ''; 
+
+    datos.forEach(vehiculo => {
+        const card = document.createElement('div'); 
+        card.className = 'card'; 
+
+        
+        card.innerHTML = `
+            <img src="${vehiculo.imagen}" alt="${vehiculo.nombre}" class="card-image"> <!-- Imagen del vehículo -->
+            <h2>${vehiculo.nombre}</h2>
+            <p>Año: ${vehiculo.año}</p>
+            <p>Valor: $${vehiculo.valor}</p>
+            <p>Cantidad: ${vehiculo.cantidad}</p>
+        `;
+
+        resultado.appendChild(card); 
+    });
+};
+
+document.getElementById('cargarDatos').addEventListener('click', obtenerVehiculos);

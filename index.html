@@ -5,43 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link rel="stylesheet" href="style.css">
+     
 </head>
-<h1>Bienvenidos a Original Chevrolet</h1>
+
+
+
 <body>
-    <h2>Inicio de sesion</h2>
-    <input type="text" id="inputusuario" placeholder="ingrese su nombre de usuario">
+    <header>
+        <h1>Bienvenidos a Original Chevrolet</h1>
+    </header>
 
-    <input type="password" id="inputpassword" placeholder="ingrese su ontraseña">
+    <button id="cargarDatos">Cargar Vehículos de exhibicion</button>
+    <div id="resultado" class="card-container"></div>
 
-    <button id="Guardar">Iniciar sesion</button>
+    <div class="form-container">
+
+        <h2>Inicio de Sesión</h2>
+        <form id="loginForm">
+            <input type="text" id="inputusuario" placeholder="Nombre de Usuario" required>
+            <input type="password" id="inputpassword" placeholder="Contraseña" required>
+            <button id="Guardar">Iniciar Sesión</button>
+        </form>
+    </div>
+    
 
 
-
-    <h2>Lista de Autos</h2>
+    
     <button id="mostarlistaButton">Mostrar Lista de Autos</button>
     <div id="listadeautos" style="display: none;">
         <ul id="itemsdelalista"></ul>
     </div>
 
+<div class="form-container">
+        <h2>Formulario de Compra</h2>
+        <form id="vehicleForm">
+            <input type="text" id="inputname" placeholder="Nombre" required>
+            <input type="text" id="inputapellido" placeholder="Apellido" required>
+            <input type="text" id="inputmetododepago" placeholder="Método de Pago" required>
+            <input type="text" id="inputnameauto" placeholder="Nombre del Auto" required>
+            <input type="number" id="inputvalordecuota" placeholder="Valor de la Cuota" required>
+            <input type="email" id="inputemail" placeholder="Email" required>
+            <button id="traer">Enviar Formulario</button>
+        </form>
+    </div>
 
-    <h2>Formulario</h2>
-    <input type="text" id="inputname" placeholder="ingrese su nombre">
     
-    <input type="text" id="inputapellido" placeholder="ingrese su apellido">
-    
-    <input type="text" id="inputmetododepago" placeholder="ingrese su metodo de pago">
-    
-    <input type="text" id="inputnameauto" placeholder="ingrese el nombre del auto">
-    
-    <input type="number" id="inputvalordecuota" placeholder="ingrese el valor de la cuota establecida">
-    
-    <input type="email" id="inputemail" placeholder="ingrese su email ">    
-    
-    <button id="traer">enviar formulario</button>
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="main.js"></script>
+  
     
 </body>
 </html>

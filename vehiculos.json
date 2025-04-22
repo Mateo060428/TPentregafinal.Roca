@@ -1,0 +1,23 @@
+[
+    {
+        "nombre": "Chevrolet cruze",
+        "año": 2024,
+        "valor": 8400000,
+        "descripcion": "Un auto adaptable y eficiente.",
+        "imagen": "https://www.chevrolet.com.ar/content/dam/chevrolet/sa/argentina/espanol/index/cars/2019-cruze-premier/colorizer/enero-21/colorizer-preto-ouro-negro.jpg?imwidth=960"
+    },
+    {
+        "nombre": "Chevrolet joy",
+        "año": 2025,
+        "valor": 1080000,
+        "cantidad":20,
+        "imagen": "https://www.chevrolet.com.ar/content/dam/chevrolet/sa/argentina/espanol/index/cars/2020-joy/mov/01-images/performance-joy-hb-2020.jpg?imwidth=960"
+    },
+    {
+        "nombre": "Chevrolet Camaro",
+        "año": 2022,
+        "valor": 1200000,
+        "descripcion": "Un auto deportivo con gran rendimiento.",
+        "imagen": "https://inv.assets.sincrod.com/RTT/Chevrolet/2024/6067833/default/ext_GAZ_deg02.jpg"
+    }
+]
